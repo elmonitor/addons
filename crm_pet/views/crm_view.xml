@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="crm_valoracion_view" model="ir.ui.view">
+        <field name="name">crm.valoracion.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@string='Internal Notes']" position="before">
+                <page string="Valoracion">
+                    <group>
+                        <group string="Datos de la Mascota">
+                            <field name="nombre_pet" />
+                            <field name="contact_lastname"/>
+                            <field name="peso_pet" />
+                            <field name='edad_pet'/>
+                            <field name='tamano_pet' />                             
+                            <field name='condicion_pet' />                             
+                            <field name='sexo_pet' />
+                            <field name='actividad_pet' />
+                        </group>
+                        <separator/>
+                        <group string="Parámetros para el cálculo">
+                            <field name="_sexo" />
+                            <field name='_condicion' /> 
+                            <field name='_tamano' />
+                            <field name='_actividad' />
+                            <button name="datos" string="Datos Iniciales" type="object" class="oe_left"/>                            
+                        </group>
+                        <separator/>                    
+                        <group string="Cálculo de porción diaria">
+                            <field name='_raciones' />
+                            <field name='_valoracion' />
+                            <button name="calculo" string="Calcular Valoración" type="object" class="oe_right"/>
+                        </group> 
+                    </group>
+                </page>
+        </xpath>
+        </field>
+    </record> 
+    </data>
+</openerp>
