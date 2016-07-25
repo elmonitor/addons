@@ -1,4 +1,5 @@
-# coding: utf-8 
+# coding: utf-8
+
 from openerp import api, fields, models
 from openerp.osv import fields, osv
 
