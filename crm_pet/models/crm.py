@@ -18,7 +18,7 @@ class crm_pet(models.Model):
         '_tamano' : fields.float('Tamano'),
         '_condicion' : fields.float('Condicion'),
         '_actividad' : fields.float('Actividad'),
-        '_valoracion': fields.float(string='Valoración',compute='calculo',store=False),
+        '_valoracion': fields.float(string='Valoración',compute='calculo'),
         'contact_lastname': fields.char('Apellido'),
         'precio' : fields.float('Precio'),
         '_paquetes' : fields.char('Paquetes'),
