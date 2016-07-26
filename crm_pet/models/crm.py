@@ -18,7 +18,7 @@ class crm_pet(models.Model):
         '_tamano' : fields.float('Tamano'),
         '_condicion' : fields.float('Condicion'),
         '_actividad' : fields.float('Actividad'),
-        '_valoracion': fields.float(string='Valoración',compute='calculo',store=True),
+        '_valoracion': fields.float(string='Valoración'),
         'contact_lastname': fields.char('Apellido'),
         'precio' : fields.float('Precio'),
         '_paquetes' : fields.char('Paquetes'),
@@ -30,11 +30,10 @@ class crm_pet(models.Model):
     @api.multi
     def calculo(self,cr,user,ids,_sexo,_tamano,_condicion,_actividad,peso_pet,context=None):
 	    #Calculate the total
-	valoracion=peso_pet * (_sexo + _tamano + _condicion + _actividad)*10
+	valoracion = peso_pet * (_sexo + _tamano + _condicion + _actividad)*10
         res = {
             'value': {
-		#This sets the total price on the field standard_price.
-                '_valoracion': valoracion
+		'_valoracion': valoracion
             }
         }
 	#Return the values to update it in the view.
