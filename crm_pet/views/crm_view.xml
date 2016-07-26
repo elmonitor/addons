@@ -29,8 +29,8 @@
                         </group>
                         <separator/>                    
                         <group string="Cálculo de porción diaria">
-                            <field name='_raciones' on_change="calculo(_sexo,_condicion,_tamano,_actividad)"/>
-                            <field name='_valoracion' on_change="calculo(_sexo,_condicion,_tamano,_actividad)"/>
+                            <field name='_raciones' on_change="calculo(peso_pet,_sexo,_condicion,_tamano,_actividad)"/>
+                            <field name='_valoracion' on_change="calculo(peso_pet,_sexo,_condicion,_tamano,_actividad)"/>
                             <button name="calculo" string="Calcular Valoración" type="object" class="oe_right"/>
                         </group> 
                     </group>
