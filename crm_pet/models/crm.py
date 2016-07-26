@@ -26,6 +26,21 @@ class crm_pet(models.Model):
         'ref_bolsa': fields.char('Referencia'),
     }
 
+    #This method will be called when either the field CostPrice or the field ShippingCost changes.
+    def calculo(self,cr,user,ids,_sexo,_tamano,_condicion,_actividad,context=None):
+	    #Calculate the total
+	    valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
+        res = {
+            'value': {
+		#This sets the total price on the field standard_price.
+                '_valoracion': valoracion
+	      }
+	}
+	#Return the values to update it in the view.
+	return res
+
+
+
     @api.multi
     def calculo(self):
         valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
