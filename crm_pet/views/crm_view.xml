@@ -25,7 +25,7 @@
                             <field name='_condicion' /> 
                             <field name='_tamano' />
                             <field name='_actividad' />
-                            <button name="datos" string="Datos Iniciales" type="object" class="oe_left"/>                            
+                            <button name="datos" string="Datos Iniciales" type="action"/>                            
                         </group>
                         <separator/>                    
                         <group string="Cálculo de porción diaria">
