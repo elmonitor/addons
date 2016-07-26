@@ -18,7 +18,7 @@ class crm_pet(models.Model):
         '_tamano' : fields.float('Tamano'),
         '_condicion' : fields.float('Condicion'),
         '_actividad' : fields.float('Actividad'),
-        '_valoracion': fields.float(string='Valoración'),
+        '_valoracion': fields.float('Valoración'),
         'contact_lastname': fields.char('Apellido'),
         'precio' : fields.float('Precio'),
         '_paquetes' : fields.char('Paquetes'),
@@ -27,17 +27,17 @@ class crm_pet(models.Model):
     }
 
     #This method will be called when either the field CostPrice or the field ShippingCost changes.
-    @api.multi
-    def calculo(self,cr,user,ids,_sexo,_tamano,_condicion,_actividad,peso_pet,context=None):
+    #@api.multi
+    #def calculo(self,cr,user,ids,_sexo,_tamano,_condicion,_actividad,peso_pet,context=None):
 	    #Calculate the total
-	valoracion = peso_pet * (_sexo + _tamano + _condicion + _actividad)*10
-        res = {
-            'value': {
-		'_valoracion': valoracion
-            }
-        }
+#	valoracion = peso_pet * (_sexo + _tamano + _condicion + _actividad)*10
+ #       res = {
+  #          'value': {
+#		'_valoracion': valoracion
+ #           }
+  #      }
 	#Return the values to update it in the view.
-	return res
+#	return res
 
 
 
@@ -149,6 +149,180 @@ class crm_pet(models.Model):
                 self.write({'_condicion':-0.1})
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.25})
+        
+        valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
+        if valoracion <300:
+            valoracion=50 * ((valoracion + 25) // 50)
+        else:
+            valoracion=100 * ((valoracion + 50) // 100)
+
+        self.write({'_valoracion':valoracion})
+
+        if self.city=='medellin':
+            if valoracion==100:
+                self.write({'_paquetes':'13'})
+                self.write({'precio':32500})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'200'})
+            elif valoracion==150:
+                self.write({'_paquetes':'13'})
+                self.write({'precio':35750})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'300'})
+            elif valoracion==200:
+                self.write({'_paquetes':'12'})
+                self.write({'precio':30000})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'ref_bolsa':'200'})
+            elif valoracion==250:
+                self.write({'_paquetes':'12'})
+                self.write({'precio':31500})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'ref_bolsa':'250'})
+            elif valoracion==300:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'300'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':33000})
+            elif valoracion==400:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'200'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':30000})
+            elif valoracion==500:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'250'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':31500})
+            elif valoracion==600:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'300'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':33000})
+            elif valoracion==700:
+                self.write({'_paquetes':'6-6'})
+                self.write({'ref_bolsa':'300-400'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':36000})
+            elif valoracion==800:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'400'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':39000})
+            elif valoracion==900:
+                self.write({'_paquetes':'6-6'})
+                self.write({'ref_bolsa':'400-500'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':42000})
+            elif valoracion==1000:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'500'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':45000})
+            elif valoracion==1100:
+                self.write({'_paquetes':'6-6'})
+                self.write({'ref_bolsa':'500-600'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':48000})
+            elif valoracion==1200:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'600'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':51000})
+            elif valoracion==1300:
+                self.write({'_paquetes':'6-6'})
+                self.write({'ref_bolsa':'600-700'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':54000})
+            elif valoracion==1400:
+                self.write({'_paquetes':'12'})
+                self.write({'ref_bolsa':'700'})
+                self.write({'frecuencia':'semanal'})
+                self.write({'precio':57000})
+
+        elif (self.city=='otra' or self.city=='bogota'):
+            if valoracion==100:
+                self.write({'_paquetes':'13'})
+                self.write({'precio':62500})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'200'})
+            elif valoracion==150:
+                self.write({'_paquetes':'13'})
+                self.write({'precio':65750})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'300'})
+            elif valoracion==200:
+                self.write({'_paquetes':'26'})
+                self.write({'precio':91000})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'200'})
+            elif valoracion==250:
+                self.write({'_paquetes':'26'})
+                self.write({'precio':94250})
+                self.write({'frecuencia':'mensual'})
+                self.write({'ref_bolsa':'250'})
+            elif valoracion==300:
+                self.write({'_paquetes':'26'})
+                self.write({'ref_bolsa':'300'})
+                self.write({'frecuencia':'mensual'})
+                self.write({'precio':97500})
+            elif valoracion==400:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'200'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':84000})
+            elif valoracion==500:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'250'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':87000})
+            elif valoracion==600:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'300'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':90000})
+            elif valoracion==700:
+                self.write({'_paquetes':'12-12'})
+                self.write({'ref_bolsa':'300-400'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':96000})
+            elif valoracion==800:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'400'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':102000})
+            elif valoracion==900:
+                self.write({'_paquetes':'12-12'})
+                self.write({'ref_bolsa':'400-500'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':108000})
+            elif valoracion==1000:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'500'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':114000})
+            elif valoracion==1100:
+                self.write({'_paquetes':'12-12'})
+                self.write({'ref_bolsa':'500-600'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':120000})
+            elif valoracion==1200:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'600'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':126000})
+            elif valoracion==1300:
+                self.write({'_paquetes':'12-12'})
+                self.write({'ref_bolsa':'600-700'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':132000})
+            elif valoracion==1400:
+                self.write({'_paquetes':'24'})
+                self.write({'ref_bolsa':'700'})
+                self.write({'frecuencia':'quincenal'})
+                self.write({'precio':138000})
+        
+        
 
 #class crm_lead(models.Model):
 #    _inherit = "crm.lead"    
