@@ -30,8 +30,8 @@ class crm_pet(models.Model):
 #    def datos(self):
         #valoracion=0
 
-    if self.actividad_pet=='muysedentario':
-        self.write({'_actividad':-0.4})
+    if actividad_pet=='muysedentario':
+        write({'_actividad':-0.4})
     if self.actividad_pet=='sedentario':
         self.write({'_actividad':-0.2})
     if self.actividad_pet=='normal':
