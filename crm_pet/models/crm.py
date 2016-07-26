@@ -26,7 +26,7 @@ class crm_pet(models.Model):
         'ref_bolsa': fields.char('Referencia'),
     }
 
-    @api.multi
+   # @api.multi
 #    def datos(self):
         #valoracion=0
 
