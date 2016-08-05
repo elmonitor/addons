@@ -10,4 +10,4 @@ class account_voucher(models.Model):
     @api.onchange('amount')
     def amount2word(self, cr, uid, amount, currency_id, context=None):
         currency = self.pool['res.currency'].browse(cr, uid, currency_id, context=context)
-        amount_2_word = num2words(amount,language='es')
+        amount_2_word = num2words(amount,lang='es')
