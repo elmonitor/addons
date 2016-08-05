@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import num2words as n2w
 from openerp import models, fields, api
+from openerp.osv import fields, osv
+import num2words as n2w
+
 
 class account_voucher(models.Model):
     _inherit = 'account.voucher'
