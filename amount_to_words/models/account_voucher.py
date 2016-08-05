@@ -10,7 +10,7 @@ class account_voucher(models.Model):
     columns= {
         'amount_2_word':fields.text("Amount in Words"),
     }
-    @api.multi
+    @api.onchange
     def amount2word(self, cr, uid, amount, currency_id, context=None):
         #currency = self.pool['res.currency'].browse(cr, uid, currency_id, context=context)
         self.write({'amount_2_word':n2w.num2words(amount,lang='es')})
