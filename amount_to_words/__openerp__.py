@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Amount to Words',
+    'author': '3nodus',
     'version': '1.0',
     'category': 'Accounting',
     'summary': 'Check printing commons',
