@@ -11,7 +11,7 @@
     'website': 'https://www.github.com/3nodus/addons',
     'depends' : ['account_voucher'],
     'data': [
-        'views/account_voucher_view.xml',
+        #'views/account_voucher_view.xml',
     ],
     'installable': True,
     'auto_install': False,
