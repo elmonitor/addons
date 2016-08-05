@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        
-        <act_window
-            id="account_voucher_action"
-            name="Account Voucher"
-            res_model="account.voucher" />
-        
         <record model="ir.ui.view" id="account_voucher_view">
             <field name="name">account.voucher.form</field>
             <field name="model">account.voucher</field>
