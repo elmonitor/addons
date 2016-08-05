@@ -14,4 +14,5 @@ class account_voucher(models.Model):
     def amount2word(self, cr, uid, amount, currency_id, context=None):
         currency = self.pool['res.currency'].browse(cr, uid, currency_id, context=context)
         amount_2_word = n2w.num2words(amount,lang='es')
-        echo amount_2_word
+        print("************************************")
+        print(amount_2_word)
