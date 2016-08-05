@@ -2,7 +2,7 @@
 
 from openerp import models, fields, api
 from openerp.osv import fields, osv
-import num2words as n2w
+from num2words import num2words as n2w
 
 
 class account_voucher(models.Model):
