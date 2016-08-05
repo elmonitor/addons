@@ -1,3 +1,3 @@
-import num2words
-import models
-import controllers
+from . import num2words
+from . import models
+from . import controllers
