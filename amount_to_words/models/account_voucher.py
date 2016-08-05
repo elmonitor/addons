@@ -6,7 +6,7 @@ from openerp import models, fields, api
 class account_voucher(models.Model):
     _inherit = 'account.voucher'
     columns= {
-        'amount_2_word' = fields.char("Amount in Words"),
+        'amount_2_word':fields.char("Amount in Words"),
     }
     @api.onchange('amount')
     def amount2word(self, cr, uid, amount, currency_id, context=None):
