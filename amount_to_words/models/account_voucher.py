@@ -6,8 +6,9 @@ from num2words import num2words
 
 class AccountVoucher(models.Model):
     _inherit = 'account.voucher'
-    a2w = fields.char('Cantidad en letras')
-    
+    columns={
+    'a2w':fields.char('Cantidad en letras'),
+    }
     
     @api.multi
     @api.onchange('amount')
