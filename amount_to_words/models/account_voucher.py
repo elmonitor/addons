@@ -15,3 +15,4 @@ class AccountVoucher(models.Model):
     def a_2_w(self):
         _a2w = num2words(self.amount,lang='es')
         self.write({'a2w':_a2w})
+    a_2_w()
