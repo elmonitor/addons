@@ -6,7 +6,7 @@ from num2words import num2words
 
 class AccountVoucher(models.Model):
     _inherit = 'account.voucher'
-    columns={
+    _columns={
     'a2w':fields.char('Cantidad en letras'),
     }
     
