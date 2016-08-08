@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, api, fields
+from openerp.osv import models, api, fields, osv
+
 from num2words import num2words
 
 class AccountVoucher(models.Model):
