@@ -11,7 +11,7 @@ class AccountVoucher(models.Model):
     }
     
     @api.multi
-    @api.onchange('amount')
+    @api.depends('amount')
     def a_2_w(self):
         self._a2w = num2words('amount',lang='es')
         self.write({'a2w':_a2w})
