@@ -9,8 +9,7 @@ Usage
 =====
 
 1. Install num2words python library https://pypi.python.org/pypi/num2words
-
-sudo pip install num2words
+    sudo pip install num2words
 
 2. Install the module
 
