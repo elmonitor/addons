@@ -11,7 +11,7 @@
             <field name="arch" type="xml">
                 <field name="amount" position="after">
                     <newline/>
-                    <field name="a2w"/>
+                    <field name="a2w" readonly='1'/>
                     <newline/>
                 </field>
             </field>
