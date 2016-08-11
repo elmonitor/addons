@@ -52,8 +52,6 @@ Contributors
 Maintainer
 ----------
 
-.. image:: http://190.29.119.66:22000/website/image/ir.attachment/154_5753423/datas
-
 This module is maintained by 3nodus.
 
 To contribute to this module, please visit http://github.com/3nodus/addons
