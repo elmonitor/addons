@@ -1,16 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-      <record model="account.voucher" id="account_voucher1">
-          <field name="name">account.voucher1</field>
-          <field name="model">account.voucher</field>
-          <field name="inherit_id" ref=" account_voucher.view_voucher_form"/> 
-          <field name="arch" type="xml">
-            <xpath expr="//field[@name='amount']" position="after">
-                  <newline/>
-                  <field name="a2w" />
-            </xpath>
-          </field>
-      
-      </record>
+
+        <!-- Supplier write check view -->
+
+        <record model="ir.ui.view" id="view_vendor_payment_check_form">
+            <field name="name">account.voucher.payment.check.form</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form" />
+            <field name="arch" type="xml">
+                <field name="amount" position="after">
+                    <newline/>
+                    <field name="a2w"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_write_check_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_vendor_payment_check_form"/>
+            <field name="act_window_id" ref="action_write_check"/>
+        </record>
+
     </data>
 </openerp>
