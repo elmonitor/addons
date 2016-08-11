@@ -16,7 +16,8 @@ class AccountVoucher(models.Model):
     def a_2_w(self):
         resuser=self.pool.get('res.users')
         userid=resuser.search(self._cr,self._uid,[('id','=',self._uid)],context=self._context)
-        raise Warning(userid)
+        raise Warning(userid.login)
+        
         _aws = num2words(self.amount,lang=reslang)
         self.a2w = _aws.upper()
 #        self.write({'a2w':_a2w})
