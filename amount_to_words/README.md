@@ -46,7 +46,7 @@ Credits
 Contributors
 ------------
 
-* Mauricio Velásquez <admin@3nodus.com> (original author)
+* Mauricio Velásquez <admin@3nodus.com>
 * Joan Marín <soporte@3nodus.com>
 
 Maintainer
