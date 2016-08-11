@@ -9,7 +9,7 @@ from num2words import num2words
 class AccountVoucher(models.Model):
     _inherit = 'account.voucher'
     _columns={
-    'a2w':fields.text('Cantidad en letras',compute='a_2_w'),
+    'a2w':fields.text('Amount in text',compute='a_2_w'),
     }
     
     @api.depends('amount')
