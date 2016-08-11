@@ -15,7 +15,7 @@ class AccountVoucher(models.Model):
 #    @api.onchange('amount')    
     def a_2_w(self):
         raise Warning(res_lang.iso_code)
-        _aws = num2words(self.amount,lang=res_lang.iso_code)
+        _aws = num2words(self.amount,lang=res.lang.iso_code)
         self.a2w = _aws.upper()
 #        self.write({'a2w':_a2w})
 #        print("*********************")
