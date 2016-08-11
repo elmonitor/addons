@@ -16,7 +16,7 @@ class AccountVoucher(models.Model):
     def a_2_w(self):
         resusers=self.pool['res.users'].browse(self._cr,self._uid,self._uid,context=self._context)
         print(resusers)
-        raise Warning(resusers.login)
+        raise Warning(resusers)
         #for u in resuser:
         #    print(u)
         #userid=resusers.search(self._cr,self._uid,[('id','=',self._uid)],context=self._context)
