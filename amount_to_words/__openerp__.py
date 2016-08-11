@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# © 2016 3NODUS SAS (<http://3nodus.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': 'Amount to Words',
     'author': '3nodus',
@@ -6,7 +9,7 @@
     'category': 'Accounting',
     'summary': 'Check printing commons',
     'description': """
-    This module converts the payment amount to words
+    This module converts to text the field amount from account.voucher model  
     """,
     'website': 'https://www.github.com/3nodus/addons',
     'depends' : ['account_voucher'],
