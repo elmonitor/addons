@@ -14,9 +14,9 @@ class AccountVoucher(models.Model):
     @api.depends('amount')
 #    @api.onchange('amount')    
     def a_2_w(self):
-        resusers=self.pool['res.users'].browse(self._cr,self._uid,self._uid,context=self._context)
-        print(resusers)
-        raise Warning(resusers)
+        reslang=self.pool['res.users'].browse(self._cr,self._uid,self._uid,context=self._context).partner_id.lang
+        #print(resusers)
+        raise Warning(reslang)
         #for u in resuser:
         #    print(u)
         #userid=resusers.search(self._cr,self._uid,[('id','=',self._uid)],context=self._context)
