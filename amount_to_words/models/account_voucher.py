@@ -14,11 +14,12 @@ class AccountVoucher(models.Model):
     @api.depends('amount')
 #    @api.onchange('amount')    
     def a_2_w(self):
-        resuser=self.pool.get('res.users')
-        raise Warning(resuser.login)
+        resusers=self.pool['res.users'].browse(self._cr,self._uid,self._uid,context=self._context)
+        print(resusers)
+        raise Warning(resusers.login)
         #for u in resuser:
         #    print(u)
-        userid=resuser.search(self._cr,self._uid,[('id','=',self._uid)],context=self._context)
+        #userid=resusers.search(self._cr,self._uid,[('id','=',self._uid)],context=self._context)
         
         
         _aws = num2words(self.amount,lang=reslang)
