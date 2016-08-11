@@ -14,8 +14,8 @@ class AccountVoucher(models.Model):
     @api.depends('amount')
 #    @api.onchange('amount')    
     def a_2_w(self):
-        reslang=self.pool.get('res.lang')
-        raise Warning(reslang.iso_code)
+        #reslang=self.pool.get('res.lang')
+        raise Warning(self.uid)
         _aws = num2words(self.amount,lang=reslang)
         self.a2w = _aws.upper()
 #        self.write({'a2w':_a2w})
