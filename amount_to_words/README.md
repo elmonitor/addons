@@ -3,7 +3,7 @@ Amount to Words
 
 This module was written to extend the account voucher functionality. It allows you to:
 
-- Convert to text the amount in several languages.
+- Convert numeric amount to text in different languages.
 
 Usage
 =====
