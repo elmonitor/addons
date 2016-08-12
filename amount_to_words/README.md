@@ -55,3 +55,5 @@ Maintainer
 This module is maintained by 3nodus.
 
 To contribute to this module, please visit http://github.com/3nodus/addons
+
+Currency names: https://github.com/OCA/l10n-canada/tree/8.0
