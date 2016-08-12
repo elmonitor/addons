@@ -8,7 +8,7 @@ from num2words import num2words
 
 class AccountVoucher(models.Model):
     _inherit = 'account.voucher'
-    a2w = fields.Text('Amount in text',compute='a_2_w'),
+    a2w = fields.Text('Amount in text',compute='a_2_w')
     
     @api.depends('amount')
     def a_2_w(self):
