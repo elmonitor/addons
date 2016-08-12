@@ -15,5 +15,6 @@ class AccountVoucher(models.Model):
     @api.depends('amount')
     def a_2_w(self):
         reslang=self.pool['res.users'].browse(self._cr,self._uid,self._uid,context=self._context).partner_id.lang
+        rescurrency= self.pool['res.currency'].browse(self._cr,self._uid,self._uid,context=self._context).print_on_check 
         _aws = num2words(self.amount,lang=reslang)
         self.a2w = _aws.upper()
