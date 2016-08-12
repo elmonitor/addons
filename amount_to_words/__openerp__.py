@@ -12,7 +12,7 @@
     This module converts to text the field amount from account.voucher model  
     """,
     'website': 'https://www.github.com/3nodus/addons',
-    'depends' : ['account_voucher',' res_currency_print_on_check '],
+    'depends' : ['account_voucher',' res_currency_print_on_check'],
     'data': [
         'views/account_voucher_view.xml',
     ],
