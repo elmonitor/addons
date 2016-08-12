@@ -3,13 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
-from openerp.osv import fields, osv
+#from openerp.osv import fields, osv
 from num2words import num2words
 
 class AccountVoucher(models.Model):
     _inherit = 'account.voucher'
-    _columns={
-    'a2w':fields.text('Amount in text',compute='a_2_w'),
+    a2w = fields.Text('Amount in text',compute='a_2_w'),
     }
     
     @api.depends('amount')
