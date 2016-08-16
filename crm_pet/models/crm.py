@@ -1,52 +1,44 @@
 # coding: utf-8
 
 from openerp import api, fields, models
-from openerp.osv import fields, osv
+#from openerp.osv import fields, osv
 
 class crm_pet(models.Model):
     _inherit = "crm.lead"
-    _columns = {
-        'nombre_pet': fields.char('Nombre'),
-        'peso_pet' :  fields.float('Peso en kg'),
-        'sexo_pet' : fields.char('Sexo'),
-        'edad_pet' : fields.char('Edad Meses'),
-        'tamano_pet' : fields.char('Tamaño'),
-        'condicion_pet' : fields.char('Condición corporal'),
-        'actividad_pet' : fields.char('Actividad Física'),
-        '_raciones' : fields.integer('Raciones por día'),
-        '_sexo' : fields.float('Sexo'),
-        '_tamano' : fields.float('Tamano'),
-        '_condicion' : fields.float('Condicion'),
-        '_actividad' : fields.float('Actividad'),
-        '_valoracion': fields.float('Valoración'),
-        'contact_lastname': fields.char('Apellido'),
-        'precio' : fields.float('Precio'),
-        '_paquetes' : fields.char('Paquetes'),
-        'frecuencia' : fields.char('Frecuencia'),
-        'ref_bolsa': fields.char('Referencia'),
-    }
 
-    @api.multi
-    def datos(self):
-    #valoracion=0
+#Campos de la mascota
 
-        if self.actividad_pet=='muysedentario':
-            self.write({'_actividad':-0.4})
-        if self.actividad_pet=='sedentario':
-            self.write({'_actividad':-0.2})
-        if self.actividad_pet=='normal':
-            self.write({'_actividad':0})
-        if self.actividad_pet=='activo':
-            self.write({'_actividad':0.2})
-        if self.actividad_pet=='muyactivo':
-            self.write({'_actividad':0.4})
-        if self.sexo_pet=="macho":
-            self.write({'_sexo': 0.2})
-        elif self.sexo_pet=="hembra":
-            self.write({'_sexo': 0.1})
-        
+    nombre_pet = fields.Char('Nombre',required=True),
+    contact_lastname = fields.Char('Apellido',required=True),
+    peso_pet =  fields.Float('Peso en kg',required=True),
+    sexo_pet = fields.Float('Sexo',required=True)
+    edad_pet = fields.Char('Edad Meses',required=True),
+    
+    tamano_pet = fields.Float('Tamaño',required=True,compute='TamanoPet'),
+    condicion_pet = fields.Float('Condición corporal',required=True,compute='CondicionPet'),
+    actividad_pet = fields.Float('Actividad Física',required=True,compute='ActividadPet'),
+    raciones_pet = fields.Integer('Raciones por día',compute='RacionesPet',required=True),
+
+#Variables a calcular
+    valoracion = fields.Float('Valoración'),
+    precio = fields.Float('Precio'),
+    paquetes = fields.Char('Paquetes'),
+    frecuencia = fields.Char('Frecuencia'),
+    ref_bolsa = fields.Char('Referencia'),
+    
+    @api.depends('edad_pet')
+    def RacionesPet(self):
         if self.edad_pet=='puppy':
-            self.write({'_raciones':4})
+            self.write({'raciones_pet':4})
+        if self.edad_pet=='junior':
+            self.write({'raciones_pet':3})
+        if self.edad_pet=='adult':
+            self.write({'raciones_pet':2})
+    
+#Calcular condición    
+    @api.depends('edad_pet')
+    def CondicionPet('self'):
+        if self.edad_pet=='puppy':
             if self.condicion_pet=="muydelgado":
                 self.write({'_condicion':0.4})
             elif self.condicion_pet=="delgado":
@@ -57,7 +49,9 @@ class crm_pet(models.Model):
                 self.write({'_condicion':-0.2})
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.4})
-
+    
+    
+    
             if (self.peso_pet>=0.35 and self.peso_pet<=2.1):
                 self.write({'tamano_pet':"miniatura"})
                 self.write({'_tamano':9})
