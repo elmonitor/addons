@@ -11,12 +11,14 @@ class ResPet(models.Model):
     
     name = fields.Char(string='Name',required=True)
     weight = fields.Float(string = 'Weight')
-    genre = fields.Selection([('Male', 'Female')])
-    size = fields.Selection([('Mini','Small','Medium','Big','Enormeus')])
-    condition = fields.Selection([('Skinny','Thin','Normal','Fat','Very Fat')])
-    activity = fields.Selection([('Muy sedentario','Sedentario','Normal','Activo','Muy activo')])
+    genre = fields.Selection([('Male', 'Female')], required=True)
+    size = fields.Selection([('Mini','Small','Medium','Big','Enormeus')],required=True)
+    condition = fields.Selection([('Skinny','Thin','Normal','Fat','Very Fat')],required=True)
+    activity = fields.Selection([('Muy sedentario','Sedentario','Normal','Activo','Muy activo')],required=True)
     category = fields.Selection([('Perro','Gato','Pájaro','Caballo','Conejo')])
     breed = fields.Char(string = 'Breed')
-    age = fields.Integer(string = 'Age')
+    age = fields.Integer(string = 'Age in monts')
     parent = fields.Many2one('res.partner')
     photo = fields.Binary()
+    
+
