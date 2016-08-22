@@ -11,9 +11,8 @@ class crm_pet(models.Model):
     nombre_pet = fields.Char('Nombre',required=True),
     contact_lastname = fields.Char('Apellido',required=True),
     peso_pet =  fields.Float('Peso en kg',required=True),
-    sexo_pet = fields.Float('Sexo',required=True)
-    edad_pet = fields.Char('Edad Meses',required=True),
-    
+    sexo_pet = fields.Float([('0.2', 'Macho'),('0.1', 'Hembra')],required=True)
+    edad_pet = fields.Selection([('puppy','Puppy),('junior','Junior'),('adult', 'Adult')], required=True),
     tamano_pet = fields.Float('Tamaño',required=True,compute='TamanoPet'),
     condicion_pet = fields.Float('Condición corporal',required=True,compute='CondicionPet'),
     actividad_pet = fields.Float('Actividad Física',required=True,compute='ActividadPet'),
@@ -26,6 +25,7 @@ class crm_pet(models.Model):
     frecuencia = fields.Char('Frecuencia'),
     ref_bolsa = fields.Char('Referencia'),
     
+#Cálculo número de raciones
     @api.depends('edad_pet')
     def RacionesPet(self):
         if self.edad_pet=='puppy':
@@ -35,9 +35,10 @@ class crm_pet(models.Model):
         if self.edad_pet=='adult':
             self.write({'raciones_pet':2})
     
-#Calcular condición    
+#Calcular condición y tamaño
     @api.depends('edad_pet')
     def CondicionPet('self'):
+        
         if self.edad_pet=='puppy':
             if self.condicion_pet=="muydelgado":
                 self.write({'_condicion':0.4})
@@ -49,9 +50,7 @@ class crm_pet(models.Model):
                 self.write({'_condicion':-0.2})
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.4})
-    
-    
-    
+                
             if (self.peso_pet>=0.35 and self.peso_pet<=2.1):
                 self.write({'tamano_pet':"miniatura"})
                 self.write({'_tamano':9})
@@ -64,12 +63,12 @@ class crm_pet(models.Model):
             elif (self.peso_pet>8.5 and self.peso_pet<=13):
                 self.write({'tamano_pet':"grande"})
                 self.write({'_tamano':6})
-            elif (self.peso_pet>13):
+            elif (self.peso_pet>13 and self.peso_pet<100):
                 self.write({'tamano_pet':"muygrande"})
                 self.write({'_tamano':5})
 
         elif self.edad_pet=='junior':
-            self.write({'_raciones':3})
+        #    self.write({'_raciones':3})
             if (self.peso_pet>=0.7 and self.peso_pet<=4.4):
                 self.write({'tamano_pet':"miniatura"})
                 self.write({'_tamano':6.5})
@@ -82,7 +81,7 @@ class crm_pet(models.Model):
             elif (self.peso_pet>21.3 and self.peso_pet<=27.8):
                 self.write({'tamano_pet':"grande"})
                 self.write({'_tamano':3.7})
-            elif (self.peso_pet>27.8):
+            elif (self.peso_pet>27.8 and self.peso_pet<100):
                 self.write({'tamano_pet':"muygrande"})
                 self.write({'_tamano':3})
 
@@ -97,9 +96,8 @@ class crm_pet(models.Model):
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.4})
 
-
         elif self.edad_pet=='adult':
-            self.write({'_raciones':2})
+    #        self.write({'_raciones':2})
             if (self.peso_pet>=1.5 and self.peso_pet<=5):
                 self.write({'tamano_pet':"miniatura"})
                 self.write({'_tamano':4})
@@ -112,7 +110,7 @@ class crm_pet(models.Model):
             elif (self.peso_pet>25 and self.peso_pet<=35):
                 self.write({'tamano_pet':"grande"})
                 self.write({'_tamano':2})
-            elif (self.peso_pet>35):
+            elif (self.peso_pet>35 and self.peso_pet<100):
                 self.write({'tamano_pet':"muygrande"})
                 self.write({'_tamano':1.7})
 
@@ -126,8 +124,9 @@ class crm_pet(models.Model):
                 self.write({'_condicion':-0.1})
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.25})
-        
+
         valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
+        
         if valoracion <300:
             valoracion=50 * ((valoracion + 25) // 50)
         else:
