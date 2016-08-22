@@ -19,11 +19,13 @@ class crm_pet(models.Model):
     raciones_pet = fields.Integer('Raciones por día',compute='RacionesPet',required=True),
 
 #Variables a calcular
-    valoracion = fields.Float('Valoración'),
+    valoracion = fields.Float('Valoración',compute='Valoracion'),
     precio = fields.Float('Precio'),
     paquetes = fields.Char('Paquetes'),
     frecuencia = fields.Char('Frecuencia'),
     ref_bolsa = fields.Char('Referencia'),
+    
+    RacionesPet()
     
 #Cálculo número de raciones
     @api.depends('edad_pet')
@@ -34,6 +36,16 @@ class crm_pet(models.Model):
             self.write({'raciones_pet':3})
         if self.edad_pet=='adult':
             self.write({'raciones_pet':2})
+    
+#Cálculo de valoración
+    def Valoracion(self):    
+        valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
+        if valoracion <300:
+            valoracion=50 * ((valoracion + 25) // 50)
+        else:
+            valoracion=100 * ((valoracion + 50) // 100)
+
+        self.write({'_valoracion':valoracion})
     
 #Calcular condición y tamaño
     @api.depends('edad_pet')
@@ -125,14 +137,7 @@ class crm_pet(models.Model):
             elif self.condicion_pet=="obeso":
                 self.write({'_condicion':-0.25})
 
-        valoracion=self.peso_pet * (self._sexo + self._tamano + self._condicion + self._actividad)*10
-        
-        if valoracion <300:
-            valoracion=50 * ((valoracion + 25) // 50)
-        else:
-            valoracion=100 * ((valoracion + 50) // 100)
-
-        self.write({'_valoracion':valoracion})
+        Valoracion()
 
         if self.city=='medellin':
             if valoracion==100:
@@ -297,3 +302,4 @@ class crm_pet(models.Model):
                 self.write({'ref_bolsa':'700'})
                 self.write({'frecuencia':'quincenal'})
                 self.write({'precio':138000})
+    
