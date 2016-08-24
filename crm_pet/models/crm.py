@@ -25,7 +25,7 @@ class crm_pet(models.Model):
     #frecuencia = fields.Char('Frecuencia'),
     #ref_bolsa = fields.Char('Referencia'),
     
-    RacionesPet()
+    
     
 #Cálculo número de raciones
     @api.depends('edad_pet')
@@ -37,3 +37,4 @@ class crm_pet(models.Model):
         if self.edad_pet=='adult':
             self.write({'raciones_pet':2})
     
+    RacionesPet()
