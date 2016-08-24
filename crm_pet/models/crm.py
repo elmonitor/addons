@@ -12,7 +12,7 @@ class crm_pet(models.Model):
     contact_lastname = fields.Char('Apellido',required=True),
     peso_pet =  fields.Float('Peso en kg',required=True),
     sexo_pet = fields.Selection([('0.2', 'Macho'),('0.1', 'Hembra')],required=True)
-    edad_pet = fields.Selection([('1','Puppy),('2','Junior'),('3', 'Adult')]),
+    edad_pet = fields.Selection([('puppy','Puppy'),('junior','Junior'),('adult', 'Adult')]),
     tamano_pet = fields.Float('Tamaño',required=True,compute='TamanoPet'),
     #condicion_pet = fields.Float('Condición corporal',required=True,compute='CondicionPet'),
     #actividad_pet = fields.Float('Actividad Física',required=True,compute='ActividadPet'),
