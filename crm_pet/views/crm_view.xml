@@ -19,20 +19,6 @@
                             <field name='sexo_pet' />
                             <field name='actividad_pet' />
                         </group>
-                        <separator/>
-                        <group string="Parámetros para el cálculo">
-                            <field name="_sexo" />
-                            <field name='_condicion' /> 
-                            <field name='_tamano' />
-                            <field name='_actividad' />
-                            <button name="datos" string="Datos Iniciales" type="action"/>                            
-                        </group>
-                        <separator/>                    
-                        <group string="Cálculo de porción diaria">
-                            <field name='_raciones' on_change="calculo(peso_pet,_sexo,_condicion,_tamano,_actividad)"/>
-                            <field name='_valoracion' on_change="calculo(peso_pet,_sexo,_condicion,_tamano,_actividad)"/>
-                            <button name="calculo" string="Calcular Valoración" type="object" class="oe_right"/>
-                        </group> 
                     </group>
                 </page>
         </xpath>
