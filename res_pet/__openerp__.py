@@ -11,7 +11,7 @@ Module to manage pet information and calculate the food portion daily
     'demo': [],
     'test': [],
     'data': [
-        #"views/crm_view.xml",
+        "views/crm_view.xml",
     ],
     'auto_install': False,
     'installable': True,
